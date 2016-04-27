@@ -17,6 +17,7 @@ if not is_win32:
 	svmpredict_exe = "../svm-predict"
 	grid_py = "./grid.py"
 	gnuplot_exe = "/usr/bin/gnuplot"
+	gnuplot_alternate_exe = "/usr/local/bin/gnuplot"
 else:
         # example for windows
 	svmscale_exe = r"..\windows\svm-scale.exe"
@@ -28,7 +29,11 @@ else:
 assert os.path.exists(svmscale_exe),"svm-scale executable not found"
 assert os.path.exists(svmtrain_exe),"svm-train executable not found"
 assert os.path.exists(svmpredict_exe),"svm-predict executable not found"
-assert os.path.exists(gnuplot_exe),"gnuplot executable not found"
+if not os.path.exists(gnuplot_exe):
+  assert os.path.exists(gnuplot_alternate_exe),"gnuplot executable not found"
+  gnuplot_exe = gnuplot_alternate_exe
+else:
+  assert os.path.exists(gnuplot_exe),"gnuplot executable not found"
 assert os.path.exists(grid_py),"grid.py not found"
 
 train_pathname = sys.argv[1]
@@ -58,6 +63,9 @@ while True:
 	last_line = line
 	line = f.readline()
 	if not line: break
+	else:
+	  c,g,rate = map(float, line.split())
+	  print "C {0}, g {1}, rate {2}".format(c, g, rate)
 c,g,rate = map(float,last_line.split())
 
 print('Best c={0}, g={1} CV rate={2}'.format(c,g,rate))
