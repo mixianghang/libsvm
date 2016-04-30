@@ -1,0 +1,62 @@
+0 linear
+/home/xmi/workspace/libsvm/svm-train -t 0 /home/xmi/workspace/libsvm/data/cross_validation/train_1 /home/xmi/workspace/libsvm/data/cross_validation/models/model_linear >>/home/xmi/workspace/libsvm/data/cross_validation/models/log
+.........
+WARNING: using -h 0 may be faster
+*..
+WARNING: using -h 0 may be faster
+*
+optimization finished, #iter = 11146
+nu = 0.436307
+obj = -10462.172044, rho = 3.113110
+nSV = 11335, nBSV = 10024
+Total nSV = 11335
+Accuracy = 80.9167% (4855/6000) (classification)
+/home/xmi/workspace/libsvm/svm-predict /home/xmi/workspace/libsvm/data/cross_validation/test_1 /home/xmi/workspace/libsvm/data/cross_validation/models/model_linear /home/xmi/workspace/libsvm/data/cross_validation/models/predict_linear >>/home/xmi/workspace/libsvm/data/cross_validation/models/log
+1 polynomial
+/home/xmi/workspace/libsvm/svm-train -t 1 /home/xmi/workspace/libsvm/data/cross_validation/train_1 /home/xmi/workspace/libsvm/data/cross_validation/models/model_polynomial >>/home/xmi/workspace/libsvm/data/cross_validation/models/log
+......
+WARNING: using -h 0 may be faster
+*.
+WARNING: using -h 0 may be faster
+*
+optimization finished, #iter = 7171
+nu = 0.440583
+obj = -10559.916680, rho = 1.009527
+nSV = 10613, nBSV = 10533
+Total nSV = 10613
+Accuracy = 77.5167% (4651/6000) (classification)
+/home/xmi/workspace/libsvm/svm-predict /home/xmi/workspace/libsvm/data/cross_validation/test_1 /home/xmi/workspace/libsvm/data/cross_validation/models/model_polynomial /home/xmi/workspace/libsvm/data/cross_validation/models/predict_polynomial >>/home/xmi/workspace/libsvm/data/cross_validation/models/log
+2 rbf
+/home/xmi/workspace/libsvm/svm-train -t 2 /home/xmi/workspace/libsvm/data/cross_validation/train_1 /home/xmi/workspace/libsvm/data/cross_validation/models/model_rbf >>/home/xmi/workspace/libsvm/data/cross_validation/models/log
+........
+WARNING: using -h 0 may be faster
+*.
+WARNING: using -h 0 may be faster
+*
+optimization finished, #iter = 9204
+nu = 0.439500
+obj = -10444.633874, rho = -3.398945
+nSV = 10586, nBSV = 10495
+Total nSV = 10586
+Accuracy = 78% (4680/6000) (classification)
+/home/xmi/workspace/libsvm/svm-predict /home/xmi/workspace/libsvm/data/cross_validation/test_1 /home/xmi/workspace/libsvm/data/cross_validation/models/model_rbf /home/xmi/workspace/libsvm/data/cross_validation/models/predict_rbf >>/home/xmi/workspace/libsvm/data/cross_validation/models/log
+3: sigmoid
+/home/xmi/workspace/libsvm/svm-train -t 3: /home/xmi/workspace/libsvm/data/cross_validation/train_1 /home/xmi/workspace/libsvm/data/cross_validation/models/model_sigmoid >>/home/xmi/workspace/libsvm/data/cross_validation/models/log
+...........
+WARNING: using -h 0 may be faster
+*..
+WARNING: using -h 0 may be faster
+*.
+WARNING: using -h 0 may be faster
+**.
+WARNING: using -h 0 may be faster
+*.
+WARNING: using -h 0 may be faster
+*
+optimization finished, #iter = 14165
+nu = 0.440000
+obj = -10816.960128, rho = 1.788478
+nSV = 10566, nBSV = 10554
+Total nSV = 10566
+Accuracy = 77.9167% (4675/6000) (classification)
+/home/xmi/workspace/libsvm/svm-predict /home/xmi/workspace/libsvm/data/cross_validation/test_1 /home/xmi/workspace/libsvm/data/cross_validation/models/model_sigmoid /home/xmi/workspace/libsvm/data/cross_validation/models/predict_sigmoid >>/home/xmi/workspace/libsvm/data/cross_validation/models/log

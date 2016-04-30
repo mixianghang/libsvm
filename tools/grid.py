@@ -12,7 +12,7 @@ else:
 
 telnet_workers = []
 ssh_workers = []
-nr_local_worker = 1
+nr_local_worker = 3
 
 class GridOption:
 	def __init__(self, dataset_pathname, options):
@@ -289,8 +289,10 @@ class Worker(Thread):
 class LocalWorker(Worker):
 	def run_one(self,c,g):
 		cmdline = self.get_cmd(c,g)
+		print cmdline
 		result = Popen(cmdline,shell=True,stdout=PIPE,stderr=PIPE,stdin=PIPE).stdout
 		for line in result.readlines():
+			print line
 			if str(line).find('Cross') != -1:
 				return float(line.split()[-1][0:-1])
 

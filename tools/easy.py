@@ -39,22 +39,23 @@ assert os.path.exists(grid_py),"grid.py not found"
 train_pathname = sys.argv[1]
 assert os.path.exists(train_pathname),"training file not found"
 file_name = os.path.split(train_pathname)[1]
-scaled_file = file_name + ".scale"
-model_file = file_name + ".model"
-range_file = file_name + ".range"
+scaled_file = file_name + ".scale01"
+model_file = file_name + ".model01"
+range_file = file_name + ".range01"
 
 if len(sys.argv) > 2:
 	test_pathname = sys.argv[2]
 	file_name = os.path.split(test_pathname)[1]
 	assert os.path.exists(test_pathname),"testing file not found"
-	scaled_test_file = file_name + ".scale"
-	predict_test_file = file_name + ".predict"
+	scaled_test_file = file_name + ".scale01"
+	predict_test_file = file_name + ".predict01"
 
-cmd = '{0} -s "{1}" "{2}" > "{3}"'.format(svmscale_exe, range_file, train_pathname, scaled_file)
+#cmd = '{0} -s "{1}" "{2}" > "{3}"'.format(svmscale_exe, range_file, train_pathname, scaled_file)
+cmd = '{0} -l 0 -u 1 -s "{1}" "{2}" > "{3}"'.format(svmscale_exe, range_file, train_pathname, scaled_file)
 print('Scaling training data...')
 Popen(cmd, shell = True, stdout = PIPE).communicate()	
 
-cmd = '{0} -svmtrain "{1}" -gnuplot "{2}" "{3}"'.format(grid_py, svmtrain_exe, gnuplot_exe, scaled_file)
+cmd = '{0} -log2g -13,-1,4 -log2c 3,15,4 -svmtrain "{1}" -gnuplot "null" -out newoutput_with_step4_scale01 "{2}"'.format(grid_py, svmtrain_exe, scaled_file)
 print('Cross validation...')
 f = Popen(cmd, shell = True, stdout = PIPE).stdout
 
@@ -64,6 +65,7 @@ while True:
 	line = f.readline()
 	if not line: break
 	else:
+	  print line
 	  c,g,rate = map(float, line.split())
 	  print "C {0}, g {1}, rate {2}".format(c, g, rate)
 c,g,rate = map(float,last_line.split())
